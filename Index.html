@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGame Wiki - Main Page</title>
+    <style>
+        :root {
+            --bg-color: #121214;
+            --container-bg: #1e1e24;
+            --header-bg: #2a2a35;
+            --accent-color: #5c6bc0;
+            --text-color: #e0e0e0;
+            --link-color: #80cbc4;
+            --border-color: #3f3f4e;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        .wiki-container {
+            max-width: 960px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            background-color: var(--container-bg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .wiki-header {
+            background-color: var(--header-bg);
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--accent-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wiki-header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .search-bar {
+            padding: 6px 12px;
+            background: #111;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            width: 250px;
+        }
+
+        .wiki-body {
+            padding: 20px;
+        }
+
+        .hero-banner {
+            border: 1px solid var(--border-color);
+            background: #18181f;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-banner img {
+            width: 200px;
+            height: 120px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+
+        .grid-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .section-box {
+            border: 1px solid var(--border-color);
+            background: #23232c;
+            padding: 12px;
+        }
+
+        .section-box h2 {
+            margin-top: 0;
+            font-size: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+            color: var(--link-color);
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .wiki-footer {
+            background-color: var(--header-bg);
+            text-align: center;
+            padding: 10px;
+            font-size: 11px;
+            border-top: 1px solid var(--border-color);
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wiki-container">
+        <div class="wiki-header">
+            <h1>MyGame Wiki</h1>
+            <input type="text" id="wikiSearch" class="search-bar" placeholder="Search the wiki..." onkeyup="filterWiki()">
+        </div>
+
+        <div class="wiki-body">
+            <div class="hero-banner">
+                <div>
+                    <h2>Welcome to the MyGame Wiki!</h2>
+                    <p>The collaborative database for lore, characters, items, and mechanics. Feel free to browse or help expand the pages.</p>
+                </div>
+            </div>
+
+            <div class="grid-sections" id="contentGrid">
+                <div class="section-box">
+                    <h2>Characters & Factions</h2>
+                    <ul>
+                        <li><a href="/wiki/Protagonist">The Main Hero</a></li>
+                        <li><a href="/wiki/Boss1">First Boss Name</a></li>
+                        <li><a href="/wiki/NPC1">Town Merchant</a></li>
+                    </ul>
+                </div>
+
+                <div class="section-box">
+                    <h2>Items & Equipment</h2>
+                    <ul>
+                        <li><a href="/wiki/SwordOfDestiny">Sword of Destiny</a></li>
+                        <li><a href="/wiki/HealthPotion">Greater Potion</a></li>
+                        <li><a href="/wiki/KeyItem">Ancient Crest</a></li>
+                    </ul>
+                </div>
+
+                <div class="section-box">
+                    <h2>Locations & World</h2>
+                    <ul>
+                        <li><a href="/wiki/StartingTown">Greenfield Village</a></li>
+                        <li><a href="/wiki/Dungeon1">Shadow Caverns</a></li>
+                    </ul>
+                </div>
+
+                <div class="section-box">
+                    <h2>Game Mechanics</h2>
+                    <ul>
+                        <li><a href="/wiki/Combat">Combat & Parry System</a></li>
+                        <li><a href="/wiki/Crafting">Blacksmith Crafting</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="wiki-footer">
+            MyGame Wiki &bull; Built with lightweight web standards
+        </div>
+    </div>
+
+    <script>
+        function filterWiki() {
+            let input = document.getElementById('wikiSearch').value.toLowerCase();
+            let items = document.querySelectorAll('.section-box li');
+            items.forEach(function(item) {
+                let text = item.textContent.toLowerCase();
+                item.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
