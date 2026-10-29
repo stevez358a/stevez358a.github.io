@@ -1,197 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BuildChan Wiki - Main Page</title>
-    <style>
-        :root {
-            --bg-color: #000000;          /* Pitch black background */
-            --container-bg: #0a0a0a;      /* Jet black container background */
-            --header-bg: #111111;         /* Dark secondary color */
-            --primary-green: #00ff00;     /* Hacker green accent */
-            --dim-green: #00aa00;         /* Primary text green */
-            --dark-green: #003300;        /* Borders and lines */
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--dim-green);
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 20px;
-            font-size: 14px;
-        }
-
-        .wiki-container {
-            max-width: 960px;
-            margin: 0 auto;
-            border: 1px solid var(--dark-green);
-            background-color: var(--container-bg);
-        }
-
-        .wiki-header {
-            background-color: var(--header-bg);
-            padding: 15px 20px;
-            border-bottom: 2px solid var(--primary-green);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .wiki-header h1 {
-            margin: 0;
-            font-size: 24px;
-            color: var(--primary-green);
-        }
-
-        .search-bar {
-            padding: 6px 12px;
-            background: #000;
-            border: 1px solid var(--dark-green);
-            color: var(--primary-green);
-            font-family: inherit;
-            width: 250px;
-        }
-
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--primary-green);
-        }
-
-        .wiki-body {
-            padding: 20px;
-        }
-
-        .hero-banner {
-            border: 1px solid var(--dark-green);
-            background: #050505;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .hero-banner h2 {
-            margin-top: 0;
-            font-size: 18px;
-            color: var(--primary-green);
-        }
-
-        .grid-sections {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-        }
-
-        .section-box {
-            border: 1px solid var(--dark-green);
-            background: #020202;
-            padding: 12px;
-        }
-
-        .section-box h2 {
-            margin-top: 0;
-            font-size: 16px;
-            border-bottom: 1px solid var(--dark-green);
-            padding-bottom: 6px;
-            color: var(--primary-green);
-        }
-
-        ul {
-            margin: 0;
-            padding-left: 18px;
-        }
-
-        li {
-            margin-bottom: 6px;
-        }
-
-        a {
-            color: var(--primary-green);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            color: #fff;
-        }
-
-        .wiki-footer {
-            background-color: var(--header-bg);
-            text-align: center;
-            padding: 10px;
-            font-size: 11px;
-            border-top: 1px solid var(--dark-green);
-            color: var(--dark-green);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuildChan Wiki - Main Page</title>
+<style>
+:root{--bg:#000;--panel:#050805;--head:#0b110b;--hi:#00ff41;--txt:#37c24f;--dim:#0f3a1a;--hot:#ff2bd6;--cy:#18e6ff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font:14px/1.6 'Courier New',Courier,monospace;margin:0;padding:20px;overflow-x:hidden}
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.28;pointer-events:none}
+body::after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px)}
+.wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;border:1px solid var(--dim);background:rgba(5,8,5,.9);box-shadow:0 0 40px rgba(0,255,65,.12)}
+header{background:var(--head);padding:15px 20px;border-bottom:2px solid var(--hi);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+.glitch{position:relative;margin:0;font-size:26px;color:var(--hi);letter-spacing:1px}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden}
+.glitch::before{color:var(--hot);animation:gl1 3.2s infinite steps(1);clip-path:inset(0 0 55% 0)}
+.glitch::after{color:var(--cy);animation:gl2 3.2s infinite steps(1);clip-path:inset(55% 0 0 0)}
+@keyframes gl1{0%,92%,100%{transform:none;opacity:0}93%{transform:translate(-3px,1px);opacity:.9}96%{transform:translate(2px,-1px);opacity:.9}}
+@keyframes gl2{0%,90%,100%{transform:none;opacity:0}91%{transform:translate(3px,-1px);opacity:.9}95%{transform:translate(-2px,1px);opacity:.9}}
+#wikiSearch{padding:7px 12px;background:#000;border:1px solid var(--dim);color:var(--hi);font:inherit;width:260px;max-width:100%;transition:.25s}
+#wikiSearch:focus{outline:none;border-color:var(--hi);box-shadow:0 0 14px rgba(0,255,65,.45)}
+main{padding:20px}
+.box{position:relative;border:1px solid var(--dim);background:#020402;padding:14px;margin-bottom:16px;transition:transform .25s,box-shadow .25s,border-color .25s}
+.box:hover{border-color:var(--hi);box-shadow:0 0 18px rgba(0,255,65,.25)}
+.box h2{margin:0 0 10px;font-size:16px;color:var(--hi);border-bottom:1px solid var(--dim);padding-bottom:6px}
+.hero h2{font-size:18px}
+.cursor::after{content:"\2588";animation:blink 1s steps(1) infinite;margin-left:2px}
+@keyframes blink{50%{opacity:0}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.grid .box{margin:0}
+ul{margin:0;padding-left:18px}li{margin-bottom:6px}
+a{color:var(--hi);text-decoration:none}a:hover{text-decoration:underline;color:#fff}
+.tag{display:inline-block;border:1px solid var(--hot);color:var(--hot);padding:0 6px;font-size:11px;margin-right:8px;animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 10px var(--hot)}}
+.potm{display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:16px}
+.potm img{width:100%;display:block;border:1px solid var(--dim)}
+.meta{font-size:12px;color:#2a8c3c;margin:0 0 8px}
+.md h1,.md h2,.md h3{color:var(--hi);margin:.6em 0 .3em;border:0;padding:0;font-size:15px}
+.md p{margin:.5em 0}.md code{background:#0b1a0e;padding:0 4px;color:var(--cy)}
+.md img{max-width:100%}
+.art{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.art figure{margin:0;cursor:zoom-in;overflow:hidden;border:1px solid var(--dim);position:relative;transition:.25s}
+.art figure:hover{border-color:var(--hot);transform:translateY(-4px) rotate(-1deg);box-shadow:0 8px 20px rgba(255,43,214,.3)}
+.art img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:transform .4s}
+.art figure:hover img{transform:scale(1.1)}
+.art figcaption{font-size:11px;padding:4px 6px;background:#000;color:var(--txt)}
+.soc{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.soc a{position:relative;display:block;text-align:center;padding:12px 8px;border:1px solid var(--dim);overflow:hidden;transition:.25s}
+.soc a::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(0,255,65,.25) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s}
+.soc a:hover::before{transform:translateX(120%)}
+.soc a:hover{border-color:var(--c,var(--hi));box-shadow:0 0 16px var(--c,var(--hi));text-decoration:none;transform:translateY(-3px)}
+.soc b{display:block;font-size:20px;color:var(--c,var(--hi))}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+#lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;flex-direction:column;cursor:zoom-out;padding:20px}
+#lb.on{display:flex}#lb img{max-width:95%;max-height:80vh;border:1px solid var(--hi);box-shadow:0 0 40px rgba(0,255,65,.4)}
+footer{background:var(--head);text-align:center;padding:10px;font-size:11px;border-top:1px solid var(--dim);color:#2a8c3c}
+@media(max-width:640px){.potm{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}#rain{display:none}}
+</style>
 </head>
 <body>
+<canvas id="rain"></canvas>
+<div class="wrap">
+  <header>
+    <h1 class="glitch" id="title" data-text=""></h1>
+    <input type="text" id="wikiSearch" placeholder="Search the wiki..." aria-label="Search the wiki">
+  </header>
+  <main id="app"></main>
+  <footer id="foot"></footer>
+</div>
+<div id="lb"><img alt=""><p id="lbc"></p></div>
 
-    <div class="wiki-container">
-        <div class="wiki-header">
-            <h1>BuildChan Wiki</h1>
-            <input type="text" id="wikiSearch" class="search-bar" placeholder="Search the wiki..." onkeyup="filterWiki()">
-        </div>
+<script>
+/* ==========================================================
+   CONFIG - EDIT ONLY THIS BLOCK TO CHANGE THE PAGE
+   - Strings in arrays = content. Add/remove rows freely.
+   - Images: set src to a file path/URL. Leave "" for a generated placeholder.
+   - Text fields marked (md) accept Markdown:
+     # h1  ## h2  **bold**  *italic*  `code`  [text](url)  ![alt](img)  - list
+   ========================================================== */
+const CONFIG = {
+  title: "BuildChan Wiki",
+  footer: "BuildChan Wiki \u2022 Running lightweight text protocol",
+  rain: true,                       // matrix background on/off
+  hero: {                           // (md)
+    title: "Welcome to BuildChan Wiki",
+    text: "The documentation and community database for lore, historical records, and ongoing developments. Browse or **contribute** to existing documentation."
+  },
+  postOfTheMonth: {
+    title: "Post of the Month",
+    heading: "The Night the Servers Sang",
+    author: "anon_4471",
+    date: "October 2026",
+    image: "",                      // e.g. "img/potm.png"
+    body: "A retelling of the **Great Server Uprising** from the logs.\n\n- 3 hours of downtime\n- 1 legendary `/rollback`\n- [Read the full thread](pages/uprising.html)"  // (md)
+  },
+  fanArt: {
+    title: "Recent Fan Art",
+    items: [
+      { title: "Build-chan at dawn", artist: "pixelwitch", src: "" },
+      { title: "Syndicate meeting", artist: "n0va", src: "" },
+      { title: "Guild badge redraw", artist: "kurogami", src: "" },
+      { title: "The Founding", artist: "mothbyte", src: "" }
+    ]
+  },
+  socials: {
+    title: "Find Us Elsewhere",
+    items: [
+      { name: "Discord", icon: "DC", url: "https://discord.gg/yourinvite", color: "#7289da" },
+      { name: "YouTube", icon: "YT", url: "https://youtube.com/@yourchannel", color: "#ff3030" },
+      { name: "Twitter/X", icon: "X", url: "https://x.com/yourhandle", color: "#18e6ff" },
+      { name: "GitHub", icon: "GH", url: "https://github.com/yourorg", color: "#ffffff" }
+    ]
+  },
+  sections: [                       // each: title + [label, href] pairs
+    { title: "People", links: [["Main Character","pages/protagonist.html"],["Rival Leader","pages/antagonist.html"],["Notable Trader","pages/merchant.html"]] },
+    { title: "Events", links: [["The Founding Incident","pages/founding.html"],["Great Server Uprising","pages/uprising.html"],["Historical Timeline","pages/timeline.html"]] },
+    { title: "Groups", links: [["The First Coalition","pages/faction1.html"],["Underground Syndicate","pages/faction2.html"],["Developer Guild","pages/guild.html"]] },
+    { title: "Wiki Documentation", links: [["Editing Rules & Guidelines","pages/rules.html"],["About BuildChan Wiki","pages/about.html"],["Staff & Administration","pages/contact.html"]] }
+  ]
+};
+/* ===================== END CONFIG ===================== */
 
-        <div class="wiki-body">
-            <div class="hero-banner">
-                <h2>Welcome to BuildChan Wiki</h2>
-                <p>The documentation and community database for lore, historical records, and ongoing developments. Feel free to browse or contribute to existing documentation.</p>
-            </div>
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const safeUrl = u => /^\s*(javascript|data|vbscript):/i.test(u) ? "#" : u;
 
-            <div class="grid-sections" id="contentGrid">
-                <div class="section-box">
-                    <h2>People</h2>
-                    <ul>
-                        <li><a href="pages/protagonist.html">Main Character</a></li>
-                        <li><a href="pages/antagonist.html">Rival Leader</a></li>
-                        <li><a href="pages/merchant.html">Notable Trader</a></li>
-                    </ul>
-                </div>
+/* Minimal Markdown renderer (input is HTML-escaped first) */
+function inline(s){
+  return s
+    .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g,(m,a,u)=>`<img src="${safeUrl(u)}" alt="${a}">`)
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(m,t,u)=>`<a href="${safeUrl(u)}">${t}</a>`)
+    .replace(/\*\*([^*]+)\*\*/g,"<b>$1</b>")
+    .replace(/\*([^*]+)\*/g,"<i>$1</i>")
+    .replace(/`([^`]+)`/g,"<code>$1</code>");
+}
+function md(src){
+  return esc(src).split(/\n{2,}/).map(b=>{
+    const lines = b.split("\n");
+    if (lines.every(l=>/^\s*[-*] /.test(l)))
+      return "<ul>"+lines.map(l=>"<li>"+inline(l.replace(/^\s*[-*] /,""))+"</li>").join("")+"</ul>";
+    const h = b.match(/^(#{1,3}) (.*)$/);
+    if (h) return `<h${h[1].length}>${inline(h[2])}</h${h[1].length}>`;
+    return "<p>"+inline(lines.join("<br>"))+"</p>";
+  }).join("");
+}
 
-                <div class="section-box">
-                    <h2>Events</h2>
-                    <ul>
-                        <li><a href="pages/founding.html">The Founding Incident</a></li>
-                        <li><a href="pages/uprising.html">Great Server Uprising</a></li>
-                        <li><a href="pages/timeline.html">Historical Timeline</a></li>
-                    </ul>
-                </div>
+/* Generated placeholder art (no external files needed) */
+function placeholder(seed, label){
+  let h = 0; for (const c of seed) h = (h*31 + c.charCodeAt(0)) % 360;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${h},90%,35%)"/><stop offset="1" stop-color="hsl(${(h+80)%360},90%,12%)"/></linearGradient></defs><rect width="200" height="200" fill="url(#g)"/><text x="100" y="108" fill="#fff" fill-opacity=".8" font-family="monospace" font-size="14" text-anchor="middle">${esc(label).slice(0,22)}</text></svg>`;
+  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+}
 
-                <div class="section-box">
-                    <h2>Groups</h2>
-                    <ul>
-                        <li><a href="pages/faction1.html">The First Coalition</a></li>
-                        <li><a href="pages/faction2.html">Underground Syndicate</a></li>
-                        <li><a href="pages/guild.html">Developer Guild</a></li>
-                    </ul>
-                </div>
+/* Build page */
+const C = CONFIG, app = $("#app");
+document.title = C.title + " - Main Page";
+$("#title").textContent = C.title; $("#title").dataset.text = C.title;
+$("#foot").textContent = C.footer;
 
-                <div class="section-box">
-                    <h2>Wiki Documentation</h2>
-                    <ul>
-                        <li><a href="pages/rules.html">Editing Rules & Guidelines</a></li>
-                        <li><a href="pages/about.html">About BuildChan Wiki</a></li>
-                        <li><a href="pages/contact.html">Staff & Administration</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+const P = C.postOfTheMonth, F = C.fanArt, S = C.socials;
+app.innerHTML = `
+<div class="box hero rv"><h2>${esc(C.hero.title)}</h2><div class="md cursor" id="heroText"></div></div>
 
-        <div class="wiki-footer">
-            BuildChan Wiki &bull; Running lightweight text protocol
-        </div>
-    </div>
+<div class="box rv" data-search>
+  <h2><span class="tag">NEW</span>${esc(P.title)}</h2>
+  <div class="potm">
+    <img src="${esc(safeUrl(P.image) || placeholder(P.heading,P.heading))}" alt="${esc(P.heading)}">
+    <div class="md"><h3>${esc(P.heading)}</h3><p class="meta">by ${esc(P.author)} \u2022 ${esc(P.date)}</p>${md(P.body)}</div>
+  </div>
+</div>
 
-    <script>
-        function filterWiki() {
-            let input = document.getElementById('wikiSearch').value.toLowerCase();
-            let items = document.querySelectorAll('.section-box li');
-            items.forEach(function(item) {
-                let text = item.textContent.toLowerCase();
-                item.style.display = text.includes(input) ? '' : 'none';
-            });
-        }
-    </script>
+<div class="box rv"><h2>${esc(F.title)}</h2>
+  <div class="art">${F.items.map(a=>{
+    const src = a.src ? safeUrl(a.src) : placeholder(a.title,a.title);
+    return `<figure data-search data-src="${esc(src)}" data-cap="${esc(a.title)} - ${esc(a.artist)}"><img src="${esc(src)}" alt="${esc(a.title)}" loading="lazy"><figcaption>${esc(a.title)}<br>by ${esc(a.artist)}</figcaption></figure>`;}).join("")}
+  </div>
+</div>
+
+<div class="box rv"><h2>${esc(S.title)}</h2>
+  <div class="soc">${S.items.map(s=>`<a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener" style="--c:${esc(s.color||"#00ff41")}" data-search><b>${esc(s.icon)}</b>${esc(s.name)}</a>`).join("")}</div>
+</div>
+
+<div class="grid rv" id="contentGrid">${C.sections.map(sec=>`
+  <div class="box"><h2>${esc(sec.title)}</h2><ul>${sec.links.map(l=>`<li data-search><a href="${esc(safeUrl(l[1]))}">${esc(l[0])}</a></li>`).join("")}</ul></div>`).join("")}
+</div>`;
+
+/* Typewriter hero text */
+(function(){
+  const el = $("#heroText"), html = md(C.hero.text);
+  if (matchMedia("(prefers-reduced-motion:reduce)").matches){ el.classList.remove("cursor"); el.innerHTML = html; return; }
+  const tmp = document.createElement("div"); tmp.innerHTML = html;
+  const plain = tmp.textContent; let i = 0;
+  const t = setInterval(()=>{ el.textContent = plain.slice(0, ++i);
+    if (i >= plain.length){ clearInterval(t); el.innerHTML = html; el.classList.remove("cursor"); } }, 18);
+})();
+
+/* Scroll reveal */
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }),{threshold:.08});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+
+/* Search: filters links, art, socials, post */
+$("#wikiSearch").addEventListener("input", e=>{
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll("[data-search]").forEach(el=>{
+    el.style.display = el.textContent.toLowerCase().includes(q) ? "" : "none";
+  });
+});
+
+/* Lightbox */
+const lb = $("#lb");
+document.querySelectorAll(".art figure").forEach(f=>f.addEventListener("click",()=>{
+  $("img",lb).src = f.dataset.src; $("#lbc").textContent = f.dataset.cap; lb.classList.add("on"); }));
+lb.addEventListener("click",()=>lb.classList.remove("on"));
+addEventListener("keydown",e=>{ if(e.key==="Escape") lb.classList.remove("on"); });
+
+/* Matrix rain */
+(function(){
+  const cv = $("#rain");
+  if (!C.rain || matchMedia("(prefers-reduced-motion:reduce)").matches){ cv.style.display="none"; return; }
+  const x = cv.getContext("2d"), chars = "01\u30A2\u30A4\u30A6\u30A8\u30AA\u30AB\u30AD\u30AF\u30B1\u30B3<>{}/$#", fs = 14; let cols, drops;
+  function size(){ cv.width = innerWidth; cv.height = innerHeight; cols = Math.ceil(cv.width/fs); drops = Array.from({length:cols},()=>Math.random()*-50); }
+  size(); addEventListener("resize", size);
+  setInterval(()=>{
+    x.fillStyle = "rgba(0,0,0,.08)"; x.fillRect(0,0,cv.width,cv.height);
+    x.font = fs+"px monospace";
+    for (let i=0;i<cols;i++){
+      x.fillStyle = Math.random()>.975 ? "#fff" : "#00ff41";
+      x.fillText(chars[Math.floor(Math.random()*chars.length)], i*fs, drops[i]*fs);
+      if (drops[i]*fs > cv.height && Math.random()>.975) drops[i] = 0; drops[i]++;
+    }
+  }, 50);
+})();
+</script>
 </body>
 </html>
