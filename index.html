@@ -3,39 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyGame Wiki - Main Page</title>
+    <title>TERMINAL://MYGAME_WIKI/MAIN</title>
     <style>
         :root {
-            --bg-color: #121214;
-            --container-bg: #1e1e24;
-            --header-bg: #2a2a35;
-            --accent-color: #5c6bc0;
-            --text-color: #e0e0e0;
-            --link-color: #80cbc4;
-            --border-color: #3f3f4e;
+            --bg-color: #050505;          /* Pitch black background */
+            --container-bg: #0d0d0d;      /* Deep obsidian box background */
+            --header-bg: #141414;         /* Sleek header background */
+            --primary-green: #33ff33;     /* Bright terminal green */
+            --dim-green: #00aa00;         /* Secondary terminal text */
+            --dark-green: #003300;        /* Subtle green borders */
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-green);
+            font-family: 'Courier New', Courier, monospace; /* Monospace terminal font */
             margin: 0;
             padding: 20px;
             font-size: 14px;
+            text-shadow: 0 0 4px rgba(51, 255, 51, 0.4); /* Terminal glow effect */
+        }
+
+        /* Scanline effect simulation */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9999;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
         }
 
         .wiki-container {
             max-width: 960px;
             margin: 0 auto;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--primary-green);
             background-color: var(--container-bg);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            box-shadow: 0 0 15px rgba(51, 255, 51, 0.2);
         }
 
         .wiki-header {
             background-color: var(--header-bg);
             padding: 15px 20px;
-            border-bottom: 2px solid var(--accent-color);
+            border-bottom: 1px solid var(--primary-green);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -43,16 +55,23 @@
 
         .wiki-header h1 {
             margin: 0;
-            font-size: 24px;
-            color: #fff;
+            font-size: 20px;
+            letter-spacing: 2px;
         }
 
         .search-bar {
             padding: 6px 12px;
-            background: #111;
-            border: 1px solid var(--border-color);
-            color: #fff;
+            background: #000;
+            border: 1px solid var(--dim-green);
+            color: var(--primary-green);
+            font-family: inherit;
             width: 250px;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 5px var(--primary-green);
         }
 
         .wiki-body {
@@ -60,19 +79,15 @@
         }
 
         .hero-banner {
-            border: 1px solid var(--border-color);
-            background: #18181f;
+            border: 1px solid var(--dim-green);
+            background: #000;
             padding: 15px;
             margin-bottom: 20px;
-            display: flex;
-            gap: 20px;
         }
 
-        .hero-banner img {
-            width: 200px;
-            height: 120px;
-            object-fit: cover;
-            border: 1px solid var(--border-color);
+        .hero-banner h2 {
+            margin-top: 0;
+            font-size: 18px;
         }
 
         .grid-sections {
@@ -82,22 +97,27 @@
         }
 
         .section-box {
-            border: 1px solid var(--border-color);
-            background: #23232c;
+            border: 1px solid var(--dark-green);
+            background: #050505;
             padding: 12px;
+        }
+
+        .section-box:hover {
+            border-color: var(--dim-green);
         }
 
         .section-box h2 {
             margin-top: 0;
-            font-size: 16px;
-            border-bottom: 1px solid var(--border-color);
+            font-size: 15px;
+            border-bottom: 1px solid var(--dark-green);
             padding-bottom: 6px;
-            color: var(--link-color);
+            color: #fff;
         }
 
         ul {
             margin: 0;
             padding-left: 18px;
+            list-style-type: '--> '; /* Custom terminal arrow bullet */
         }
 
         li {
@@ -105,12 +125,14 @@
         }
 
         a {
-            color: var(--link-color);
+            color: var(--primary-green);
             text-decoration: none;
         }
 
         a:hover {
-            text-decoration: underline;
+            background-color: var(--primary-green);
+            color: #000;
+            text-shadow: none;
         }
 
         .wiki-footer {
@@ -118,8 +140,8 @@
             text-align: center;
             padding: 10px;
             font-size: 11px;
-            border-top: 1px solid var(--border-color);
-            color: #aaa;
+            border-top: 1px solid var(--dark-green);
+            color: var(--dim-green);
         }
     </style>
 </head>
@@ -127,57 +149,54 @@
 
     <div class="wiki-container">
         <div class="wiki-header">
-            <h1>MyGame Wiki</h1>
-            <input type="text" id="wikiSearch" class="search-bar" placeholder="Search the wiki..." onkeyup="filterWiki()">
+            <h1>SYS://WIKI_MAIN_INDEX</h1>
+            <input type="text" id="wikiSearch" class="search-bar" placeholder="[QUERY_DATABASE...]" onkeyup="filterWiki()">
         </div>
 
         <div class="wiki-body">
             <div class="hero-banner">
-                <div>
-                    <h2>Welcome to the MyGame Wiki!</h2>
-                    <p>The collaborative database for lore, characters, items, and mechanics. Feel free to browse or help expand the pages.</p>
-                </div>
+                <h2>> ACCESS GRANTED: MyGame Database</h2>
+                <p>Welcome to the core terminal. Querying file directories for lore protocols, entity manifests, data items, and engine mechanics.</p>
             </div>
 
             <div class="grid-sections" id="contentGrid">
                 <div class="section-box">
-                    <h2>Characters & Factions</h2>
+                    <h2>[01] ENTITIES & FACTIONS</h2>
                     <ul>
-                        <li><a href="/wiki/Protagonist">The Main Hero</a></li>
-                        <li><a href="/wiki/Boss1">First Boss Name</a></li>
-                        <li><a href="/wiki/NPC1">Town Merchant</a></li>
+                        <li><a href="pages/protagonist.html">protagonist.log</a></li>
+                        <li><a href="pages/boss1.html">boss_manifesto.dat</a></li>
+                        <li><a href="pages/npc1.html">merchant_inventory.cfg</a></li>
                     </ul>
                 </div>
 
                 <div class="section-box">
-                    <h2>Items & Equipment</h2>
+                    <h2>[02] FILES & EQUIPMENT</h2>
                     <ul>
-                        <li><a href="/wiki/SwordOfDestiny">Sword of Destiny</a></li>
-                        <li><a href="/wiki/HealthPotion">Greater Potion</a></li>
-                        <li><a href="/wiki/KeyItem">Ancient Crest</a></li>
+                        <li><a href="pages/sword.html">weapon_destiny_sword.exe</a></li>
+                        <li><a href="pages/potion.html">item_health_potion.bin</a></li>
                     </ul>
                 </div>
 
                 <div class="section-box">
-                    <h2>Locations & World</h2>
+                    <h2>[03] COORD_LOCATIONS</h2>
                     <ul>
-                        <li><a href="/wiki/StartingTown">Greenfield Village</a></li>
-                        <li><a href="/wiki/Dungeon1">Shadow Caverns</a></li>
+                        <li><a href="pages/town.html">sector_greenfield.map</a></li>
+                        <li><a href="pages/dungeon.html">sector_shadow_cavern.map</a></li>
                     </ul>
                 </div>
 
                 <div class="section-box">
-                    <h2>Game Mechanics</h2>
+                    <h2>[04] CORE_MECHANICS</h2>
                     <ul>
-                        <li><a href="/wiki/Combat">Combat & Parry System</a></li>
-                        <li><a href="/wiki/Crafting">Blacksmith Crafting</a></li>
+                        <li><a href="pages/combat.html">combat_parry_routine.sys</a></li>
+                        <li><a href="pages/crafting.html">crafting_recipe_matrix.sys</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="wiki-footer">
-            MyGame Wiki &bull; Built with lightweight web standards
+            TERMINAL V1.0.4 &bull; CONNECTION SECURE
         </div>
     </div>
 
