@@ -3,51 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERMINAL://MYGAME_WIKI/MAIN</title>
+    <title>BuildChan Wiki - Main Page</title>
     <style>
         :root {
-            --bg-color: #050505;          /* Pitch black background */
-            --container-bg: #0d0d0d;      /* Deep obsidian box background */
-            --header-bg: #141414;         /* Sleek header background */
-            --primary-green: #33ff33;     /* Bright terminal green */
-            --dim-green: #00aa00;         /* Secondary terminal text */
-            --dark-green: #003300;        /* Subtle green borders */
+            --bg-color: #000000;          /* Pitch black background */
+            --container-bg: #0a0a0a;      /* Jet black container background */
+            --header-bg: #111111;         /* Dark secondary color */
+            --primary-green: #00ff00;     /* Hacker green accent */
+            --dim-green: #00aa00;         /* Primary text green */
+            --dark-green: #003300;        /* Borders and lines */
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--primary-green);
-            font-family: 'Courier New', Courier, monospace; /* Monospace terminal font */
+            color: var(--dim-green);
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 20px;
             font-size: 14px;
-            text-shadow: 0 0 4px rgba(51, 255, 51, 0.4); /* Terminal glow effect */
-        }
-
-        /* Scanline effect simulation */
-        body::before {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 9999;
-            background-size: 100% 4px, 3px 100%;
-            pointer-events: none;
         }
 
         .wiki-container {
             max-width: 960px;
             margin: 0 auto;
-            border: 1px solid var(--primary-green);
+            border: 1px solid var(--dark-green);
             background-color: var(--container-bg);
-            box-shadow: 0 0 15px rgba(51, 255, 51, 0.2);
         }
 
         .wiki-header {
             background-color: var(--header-bg);
             padding: 15px 20px;
-            border-bottom: 1px solid var(--primary-green);
+            border-bottom: 2px solid var(--primary-green);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,14 +41,14 @@
 
         .wiki-header h1 {
             margin: 0;
-            font-size: 20px;
-            letter-spacing: 2px;
+            font-size: 24px;
+            color: var(--primary-green);
         }
 
         .search-bar {
             padding: 6px 12px;
             background: #000;
-            border: 1px solid var(--dim-green);
+            border: 1px solid var(--dark-green);
             color: var(--primary-green);
             font-family: inherit;
             width: 250px;
@@ -71,7 +57,6 @@
         .search-bar:focus {
             outline: none;
             border-color: var(--primary-green);
-            box-shadow: 0 0 5px var(--primary-green);
         }
 
         .wiki-body {
@@ -79,8 +64,8 @@
         }
 
         .hero-banner {
-            border: 1px solid var(--dim-green);
-            background: #000;
+            border: 1px solid var(--dark-green);
+            background: #050505;
             padding: 15px;
             margin-bottom: 20px;
         }
@@ -88,6 +73,7 @@
         .hero-banner h2 {
             margin-top: 0;
             font-size: 18px;
+            color: var(--primary-green);
         }
 
         .grid-sections {
@@ -98,26 +84,21 @@
 
         .section-box {
             border: 1px solid var(--dark-green);
-            background: #050505;
+            background: #020202;
             padding: 12px;
-        }
-
-        .section-box:hover {
-            border-color: var(--dim-green);
         }
 
         .section-box h2 {
             margin-top: 0;
-            font-size: 15px;
+            font-size: 16px;
             border-bottom: 1px solid var(--dark-green);
             padding-bottom: 6px;
-            color: #fff;
+            color: var(--primary-green);
         }
 
         ul {
             margin: 0;
             padding-left: 18px;
-            list-style-type: '--> '; /* Custom terminal arrow bullet */
         }
 
         li {
@@ -130,9 +111,8 @@
         }
 
         a:hover {
-            background-color: var(--primary-green);
-            color: #000;
-            text-shadow: none;
+            text-decoration: underline;
+            color: #fff;
         }
 
         .wiki-footer {
@@ -141,7 +121,7 @@
             padding: 10px;
             font-size: 11px;
             border-top: 1px solid var(--dark-green);
-            color: var(--dim-green);
+            color: var(--dark-green);
         }
     </style>
 </head>
@@ -149,54 +129,57 @@
 
     <div class="wiki-container">
         <div class="wiki-header">
-            <h1>SYS://WIKI_MAIN_INDEX</h1>
-            <input type="text" id="wikiSearch" class="search-bar" placeholder="[QUERY_DATABASE...]" onkeyup="filterWiki()">
+            <h1>BuildChan Wiki</h1>
+            <input type="text" id="wikiSearch" class="search-bar" placeholder="Search the wiki..." onkeyup="filterWiki()">
         </div>
 
         <div class="wiki-body">
             <div class="hero-banner">
-                <h2>> ACCESS GRANTED: MyGame Database</h2>
-                <p>Welcome to the core terminal. Querying file directories for lore protocols, entity manifests, data items, and engine mechanics.</p>
+                <h2>Welcome to BuildChan Wiki</h2>
+                <p>The documentation and community database for lore, historical records, and ongoing developments. Feel free to browse or contribute to existing documentation.</p>
             </div>
 
             <div class="grid-sections" id="contentGrid">
                 <div class="section-box">
-                    <h2>[01] ENTITIES & FACTIONS</h2>
+                    <h2>People</h2>
                     <ul>
-                        <li><a href="pages/protagonist.html">protagonist.log</a></li>
-                        <li><a href="pages/boss1.html">boss_manifesto.dat</a></li>
-                        <li><a href="pages/npc1.html">merchant_inventory.cfg</a></li>
+                        <li><a href="pages/protagonist.html">Main Character</a></li>
+                        <li><a href="pages/antagonist.html">Rival Leader</a></li>
+                        <li><a href="pages/merchant.html">Notable Trader</a></li>
                     </ul>
                 </div>
 
                 <div class="section-box">
-                    <h2>[02] FILES & EQUIPMENT</h2>
+                    <h2>Events</h2>
                     <ul>
-                        <li><a href="pages/sword.html">weapon_destiny_sword.exe</a></li>
-                        <li><a href="pages/potion.html">item_health_potion.bin</a></li>
+                        <li><a href="pages/founding.html">The Founding Incident</a></li>
+                        <li><a href="pages/uprising.html">Great Server Uprising</a></li>
+                        <li><a href="pages/timeline.html">Historical Timeline</a></li>
                     </ul>
                 </div>
 
                 <div class="section-box">
-                    <h2>[03] COORD_LOCATIONS</h2>
+                    <h2>Groups</h2>
                     <ul>
-                        <li><a href="pages/town.html">sector_greenfield.map</a></li>
-                        <li><a href="pages/dungeon.html">sector_shadow_cavern.map</a></li>
+                        <li><a href="pages/faction1.html">The First Coalition</a></li>
+                        <li><a href="pages/faction2.html">Underground Syndicate</a></li>
+                        <li><a href="pages/guild.html">Developer Guild</a></li>
                     </ul>
                 </div>
 
                 <div class="section-box">
-                    <h2>[04] CORE_MECHANICS</h2>
+                    <h2>Wiki Documentation</h2>
                     <ul>
-                        <li><a href="pages/combat.html">combat_parry_routine.sys</a></li>
-                        <li><a href="pages/crafting.html">crafting_recipe_matrix.sys</a></li>
+                        <li><a href="pages/rules.html">Editing Rules & Guidelines</a></li>
+                        <li><a href="pages/about.html">About BuildChan Wiki</a></li>
+                        <li><a href="pages/contact.html">Staff & Administration</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="wiki-footer">
-            TERMINAL V1.0.4 &bull; CONNECTION SECURE
+            BuildChan Wiki &bull; Running lightweight text protocol
         </div>
     </div>
 
